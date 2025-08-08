@@ -63,9 +63,11 @@ const signInVerify = () => {
   }
 }
 const tokenVerify = () => {
+  messageToken.value = ''
   verification.token(content.value.token)
 }
 const signOutVerify = () => {
+  messageToken.value = ''
   verification.token(content.value.token, 0)
 }
 
