@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 
-const isEdit = ref(false)
 const menus = ref([
   {
     id: 't001',
@@ -61,20 +60,21 @@ const menus = ref([
   },
 ])
 const edit = ref({})
+const editID = ref('')
+
 const editFn = {
-  data: (item) => {
-    isEdit.value = true
+  edit: (item) => {
     edit.value = { ...item }
+    editID.value = item.id
   },
   reset: () => {
-    isEdit.value = false
     edit.value = {}
+    editID.value = ''
   },
-  save: (item) => {
-    isEdit.value = false
-    edit.value = item
-    const index = menus.value.findIndex((menu) => menu.id == item.id)
+  save: () => {
+    const index = menus.value.findIndex((menu) => menu.id == editID.value)
     menus.value[index] = edit.value
+    editFn.reset()
   },
 }
 </script>
@@ -109,12 +109,12 @@ const editFn = {
           <button @click="menu.stock++">+</button>
         </td>
         <td>
-          <button type="button" @click="editFn.data(menu)" v-if="!isEdit">修改</button>
+          <button type="button" @click="editFn.edit(menu)" v-if="editID != menu.id">修改</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="edit" v-if="isEdit">
+  <div class="edit" v-if="editID">
     <h2>修改內容</h2>
     <div class="list">
       <label for="">品項：</label>
@@ -133,8 +133,8 @@ const editFn = {
       <input type="number" v-model="edit.stock" />
     </div>
     <div class="btn">
-      <button type="button" @click="editFn.reset">取消</button>
-      <button type="button" @click="editFn.save(edit)">確認</button>
+      <button type="button" @click="editFn.reset()">取消</button>
+      <button type="button" @click="editFn.save()">確認</button>
     </div>
   </div>
 </template>
