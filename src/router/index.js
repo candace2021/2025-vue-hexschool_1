@@ -18,6 +18,11 @@ const router = createRouter({
       name: 'third',
       component: () => import('../views/ThirdView.vue'),
     },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: () => import('../views/TasksView.vue'),
+    },
   ],
 })
 

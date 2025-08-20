@@ -4,6 +4,7 @@
       <RouterLink to="/">第一堂課作業</RouterLink>
       <RouterLink to="/second">第二堂課作業</RouterLink>
       <RouterLink to="/third">第三堂課作業</RouterLink>
+      <RouterLink to="/tasks">進階任務</RouterLink>
       <!-- <RouterLink to="/">第四堂課作業</RouterLink> -->
     </header>
     <RouterView />
@@ -22,11 +23,11 @@ body {
 }
 .wrap {
   max-width: 1200px;
-  width: 88%;
+  width: 90%;
   margin: 0 auto;
 }
 header {
-  margin-bottom: 40px;
+  margin: 20px 0 40px;
   a {
     display: inline-block;
     padding: 5px 10px;
